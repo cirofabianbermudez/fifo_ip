@@ -18,11 +18,11 @@ interface fifo_if #(
     output rd_i;
     output wr_i;
     output w_data_i;
-    input  r_data_o;
-    input  empty_o;
-    input  full_o;
+    input r_data_o;
+    input empty_o;
+    input full_o;
   endclocking
 
-  modport dvr (clocking cb, output rst_i);
+  modport dvr(clocking cb, output rst_i);
 
 endinterface : fifo_if
