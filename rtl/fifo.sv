@@ -15,8 +15,8 @@ module fifo #(
     parameter int WordLength = 8,
     parameter int AddrBits   = 4
 ) (
-    input  logic                  rst_i,
     input  logic                  clk_i,
+    input  logic                  rst_i,
     input  logic                  rd_i,
     input  logic                  wr_i,
     input  logic [WordLength-1:0] w_data_i,
@@ -30,8 +30,8 @@ module fifo #(
   logic                wr_en;
   logic                full;
 
-  assign wr_en = wr_i & ~full;
-  assign full_o = full
+  assign wr_en  = wr_i & ~full;
+  assign full_o = full;
 
   fifo_ctrl #(
       .AddrBits(AddrBits)
