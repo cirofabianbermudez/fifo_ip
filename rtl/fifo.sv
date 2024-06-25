@@ -8,7 +8,7 @@
 // [Notes]          Dependencies:
 //                    reg_file.sv
 //                    fifo_ctrl.sb
-// [Status]         Draft <- Under Development <- Testing
+// [Status]         Draft -> Under Development -> Testing -> Stable
 ///////////////////////////////////////////////////////////////////////////////////
 
 module fifo #(
@@ -28,10 +28,15 @@ module fifo #(
   logic [AddrBits-1:0] w_addr;
   logic [AddrBits-1:0] r_addr;
   logic                wr_en;
+  logic                rd_en;
   logic                full;
+  logic                empty;
 
   assign wr_en  = wr_i & ~full;
-  assign full_o = full;
+  assign full_o  = full;
+
+  assign rd_en  = rd_i & ~empty;
+  assign empty_o = empty;
 
   fifo_ctrl #(
       .AddrBits(AddrBits)
@@ -42,7 +47,7 @@ module fifo #(
       .wr_i(wr_i),
       .w_addr_o(w_addr),
       .r_addr_o(r_addr),
-      .empty_o(empty_o),
+      .empty_o(empty),
       .full_o(full)
   );
 
@@ -52,6 +57,7 @@ module fifo #(
   ) reg_file_m (
       .clk_i(clk_i),
       .wr_en_i(wr_en),
+      .rd_en_i(rd_en),
       .w_addr_i(w_addr),
       .r_addr_i(r_addr),
       .w_data_i(w_data_i),
