@@ -5,24 +5,14 @@ module test (
   initial begin
     $display("Begin Of Simulation.");
     reset();
-    write('d0);   // One write
-    write('d10);  // Three writes
-    write('d20);
-    write('d30);
-    read();       // One read
-    write('d40);  // Four writes
-    write('d50);
-    write('d60);
-    write('d70);
-    write('d80);  // One more write FULL
-    read();       // Two reads
-    read();
-    read();       // Five reads
-    read();
-    read();
-    read();
-    read();
-    read();       // One more read EMPTY
+    repeat(1) write($urandom_range(1,255));   // One write
+    repeat(3) write($urandom_range(1,255));   // Three writes
+    repeat(1) read();                         // One read
+    repeat(4) write($urandom_range(1,255));   // Four writes
+    repeat(1) write($urandom_range(1,255));   // One more write FULL
+    repeat(2) read();                         // Two reads
+    repeat(5) read();                         // Five reads
+    repeat(1) read();                         // One more read EMPTY
     $display("End Of Simulation.");
     $finish;
   end
