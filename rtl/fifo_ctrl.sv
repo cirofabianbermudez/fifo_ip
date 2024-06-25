@@ -23,14 +23,11 @@ module fifo_ctrl #(
     output logic                full_o
 );
 
-  typedef enum logic [1:0] {
-    NONE,
-    READ,
-    WRITE,
-    BOTH
-  } fifo_cmd_e;
+  localparam [1:0] NONE  = 2'b00,
+                   READ  = 2'b01,
+                   WRITE = 2'b10,
+                   BOTH  = 2'b11;
 
-  fifo_cmd_e fifo_cmd = {wr_i, rd_i};
   logic [AddrBits-1:0] w_ptr_q, w_ptr_d, w_ptr_succ;
   logic [AddrBits-1:0] r_ptr_q, r_ptr_d, r_ptr_succ;
   logic full_q, full_d;
@@ -59,7 +56,8 @@ module fifo_ctrl #(
     r_ptr_d = r_ptr_q;
     full_d = full_q;
     empty_d = empty_q;
-    unique case (fifo_cmd)
+    unique case ({wr_i, rd_i})
+      NONE: ;
       READ: begin
         if (~empty_q) begin
           r_ptr_d = r_ptr_succ;
@@ -82,7 +80,6 @@ module fifo_ctrl #(
         w_ptr_d = w_ptr_succ;
         r_ptr_d = r_ptr_succ;
       end
-      //default: ;
     endcase
   end
 
