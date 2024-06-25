@@ -6,7 +6,7 @@
 // [Created]        2024.06.22
 // [Description]    Module FIFO controller for a register file
 // [Notes]          
-// [Status]         Draft -> Under Development -> Testing
+// [Status]         Draft -> Under Development -> Testing -> Stable
 ///////////////////////////////////////////////////////////////////////////////////
 
 module fifo_ctrl #(
