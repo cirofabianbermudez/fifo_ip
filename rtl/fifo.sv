@@ -8,7 +8,7 @@
 // [Notes]          Dependencies:
 //                    reg_file.sv
 //                    fifo_ctrl.sb
-// [Status]         Draft <- Under Development <- Testing
+// [Status]         Draft -> Under Development -> Testing -> Stable
 ///////////////////////////////////////////////////////////////////////////////////
 
 module fifo #(
