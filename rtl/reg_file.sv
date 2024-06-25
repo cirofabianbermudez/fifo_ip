@@ -6,7 +6,7 @@
 // [Created]        2024.06.22
 // [Description]    Generic register file
 // [Notes]          Syncronous write operation
-//                  Asyncronous read operaton
+//                  Syncronous read operaton
 // [Status]         Stable
 ///////////////////////////////////////////////////////////////////////////////////
 
@@ -16,6 +16,7 @@ module reg_file #(
 ) (
     input  logic                  clk_i,
     input  logic                  wr_en_i,
+    input  logic                  rd_en_i,
     input  logic [  AddrBits-1:0] w_addr_i,
     input  logic [  AddrBits-1:0] r_addr_i,
     input  logic [WordLength-1:0] w_data_i,
@@ -30,7 +31,12 @@ module reg_file #(
     end
   end
 
-  assign r_data_o = reg_array[r_addr_i];
+  always_ff @(posedge clk_i) begin
+    if (rd_en_i) begin
+      r_data_o <= reg_array[r_addr_i];
+    end
+  end
+
 
 endmodule : reg_file
 
