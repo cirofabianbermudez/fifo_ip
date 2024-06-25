@@ -15,7 +15,6 @@ module reg_file #(
     parameter int AddrBits   = 3
 ) (
     input  logic                  clk_i,
-    input  logic                  rst_i,
     input  logic                  wr_en_i,
     input  logic [  AddrBits-1:0] w_addr_i,
     input  logic [  AddrBits-1:0] r_addr_i,
@@ -29,6 +28,7 @@ module reg_file #(
     if (wr_en_i) begin
       reg_array[w_addr_i] <= w_data_i;
     end
+    //r_data_o <= reg_array[r_addr_i];
   end
 
   assign r_data_o = reg_array[r_addr_i];
