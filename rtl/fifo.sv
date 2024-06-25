@@ -13,7 +13,7 @@
 
 module fifo #(
     parameter int WordLength = 8,
-    parameter int AddrBits   = 4
+    parameter int AddrBits   = 3
 ) (
     input  logic                  clk_i,
     input  logic                  rst_i,
@@ -51,7 +51,6 @@ module fifo #(
       .AddrBits  (AddrBits)
   ) reg_file_m (
       .clk_i(clk_i),
-      .rst_i(rst_i),
       .wr_en_i(wr_en),
       .w_addr_i(w_addr),
       .r_addr_i(r_addr),
