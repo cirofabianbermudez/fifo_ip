@@ -9,7 +9,7 @@ module tb;
 
   // Paramaters
   localparam int WordLength = 8;
-  localparam int AddrBits = 4;
+  localparam int AddrBits = 3;
 
   // Interface
   fifo_if #(.WordLength(WordLength)) vif (clk_i);
@@ -19,17 +19,17 @@ module tb;
 
   // Instantiation
   fifo #(
-      .WordLength(WordLengt),
+      .WordLength(WordLength),
       .AddrBits  (AddrBits)
   ) dut (
-      .rst_i(rst_i),
-      .clk_i(clk_i),
-      .rd_i(rd_i),
-      .wr_i(wr_i),
-      .w_data_i(w_data_i),
-      .r_data_o(r_data_o),
-      .empty_o(empty_o),
-      .full_o(full_o)
+      .clk_i(vif.clk_i),
+      .rst_i(vif.rst_i),
+      .rd_i(vif.rd_i),
+      .wr_i(vif.wr_i),
+      .w_data_i(vif.w_data_i),
+      .r_data_o(vif.r_data_o),
+      .empty_o(vif.empty_o),
+      .full_o(vif.full_o)
   );
 
   initial begin
