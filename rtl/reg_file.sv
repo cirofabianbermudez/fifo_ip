@@ -28,7 +28,6 @@ module reg_file #(
     if (wr_en_i) begin
       reg_array[w_addr_i] <= w_data_i;
     end
-    //r_data_o <= reg_array[r_addr_i];
   end
 
   assign r_data_o = reg_array[r_addr_i];
