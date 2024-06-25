@@ -13,7 +13,7 @@ interface fifo_if #(
   logic                  full_o;
 
   clocking cb @(posedge clk_i);
-    default input #1ns output #1ns;
+    default input #1ns output #5ns;
     output rst_i;
     output rd_i;
     output wr_i;
