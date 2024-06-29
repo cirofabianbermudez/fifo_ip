@@ -10,7 +10,6 @@
 ///////////////////////////////////////////////////////////////////////////////////
 
 module fifo_ctrl #(
-    //parameter int WordLength = 8,
     parameter int AddrBits = 4
 ) (
     input  logic                clk_i,
