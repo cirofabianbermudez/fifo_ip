@@ -100,4 +100,4 @@ module fifo_ctrl #(
   assign w_addr_o = w_ptr_q;
   assign r_addr_o = r_ptr_q;
 
-endmodule
+endmodule : fifo_ctrl

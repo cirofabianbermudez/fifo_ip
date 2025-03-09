@@ -67,4 +67,4 @@ module fifo_ip #(
       .r_data_o(r_data_o)
   );
 
-endmodule : fifo
+endmodule : fifo_ip
