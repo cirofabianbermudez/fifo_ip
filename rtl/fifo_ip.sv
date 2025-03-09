@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////////
-// [Filename]       fifo.sv
+// [Filename]       fifo_ip.sv
 // [Project]        fifo_ip
 // [Author]         Ciro Bermudez
 // [Language]       SystemVerilog 2017 [IEEE Std. 1800-2017]
@@ -16,7 +16,7 @@
 // [Revisions]      -
 ///////////////////////////////////////////////////////////////////////////////////
 
-module fifo #(
+module fifo_ip #(
     parameter int WordLength = 8,
     parameter int AddrBits   = 3
 ) (

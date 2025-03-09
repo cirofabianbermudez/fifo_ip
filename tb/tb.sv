@@ -18,7 +18,7 @@ module tb;
   test top_test (vif);
 
   // Instantiation
-  fifo #(
+  fifo_ip #(
       .WordLength(WordLength),
       .AddrBits  (AddrBits)
   ) dut (
