@@ -7,7 +7,10 @@
 // [Description]    Generic register file
 // [Notes]          Syncronous write operation
 //                  Asyncronous read operaton
+//                  Depth: 2^AddrBits
+//                  Width: WordLength
 // [Status]         Stable
+// [Revisions]      -
 ///////////////////////////////////////////////////////////////////////////////////
 
 module reg_file #(
@@ -22,14 +25,17 @@ module reg_file #(
     output logic [WordLength-1:0] r_data_o
 );
 
-  logic [WordLength-1:0] reg_array[0:2**AddrBits-1];
+  // Memory declaration
+  logic [WordLength-1:0] reg_array [0:2**AddrBits-1];
 
+  // Write operation
   always_ff @(posedge clk_i) begin
     if (wr_en_i) begin
       reg_array[w_addr_i] <= w_data_i;
     end
   end
 
+  // Read operation
   assign r_data_o = reg_array[r_addr_i];
 
 endmodule : reg_file

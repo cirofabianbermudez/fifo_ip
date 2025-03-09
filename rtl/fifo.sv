@@ -8,7 +8,12 @@
 // [Notes]          Dependencies:
 //                    reg_file.sv
 //                    fifo_ctrl.sb
-// [Status]         Draft -> Under Development -> Testing -> Stable
+//                  Syncronous write operation
+//                  Asyncronous read operaton
+//                  Depth: 2^AddrBits
+//                  Width: WordLength
+// [Status]         Devel
+// [Revisions]      -
 ///////////////////////////////////////////////////////////////////////////////////
 
 module fifo #(
@@ -24,15 +29,18 @@ module fifo #(
     output logic                  empty_o,
     output logic                  full_o
 );
-
+  
+  // Signal declaration
   logic [AddrBits-1:0] w_addr;
   logic [AddrBits-1:0] r_addr;
   logic                wr_en;
   logic                full;
 
+  // Write enable only when FIFO is not full
   assign wr_en  = wr_i & ~full;
   assign full_o = full;
-
+  
+  // Instantiate FIFO controller
   fifo_ctrl #(
       .AddrBits(AddrBits)
   ) fifo_ctrl_m (
@@ -46,6 +54,7 @@ module fifo #(
       .full_o(full)
   );
 
+  // Instantiate register file
   reg_file #(
       .WordLength(WordLength),
       .AddrBits  (AddrBits)
@@ -59,4 +68,3 @@ module fifo #(
   );
 
 endmodule : fifo
-
